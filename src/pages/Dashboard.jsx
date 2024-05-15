@@ -14,11 +14,11 @@ const Dashboard = () => {
                     <h1 className="font-bold text-5xl">
                         Company Name
                     </h1>
-                    <text className="text-xl">
+                    <div className="text-xl">
                         Last Breach Date: 10/10/2021
-                    </text>
+                    </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
+                <div className="flex mt-10 justify-between">
                     <PrivacyScore score={65} />
                     <ScoreBreakdown />
                     <CompanyDetails />

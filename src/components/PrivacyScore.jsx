@@ -15,10 +15,12 @@ const PrivacyScore = ({ score }) => {
     const widthPercentage = `${Math.min(Math.max(score, 0), 100)}%`;
 
     return (
-        <div className="p-5 bg-white rounded-2xl shadow h-64 w-64 flex flex-col justify-between">
+        <div className="p-5 bg-white rounded-2xl shadow h-64 w-72 flex flex-col justify-between">
             <div className="flex justify-between items-center">
                 <h2 className="text-md font-bold text-darkGray">Privacy Score</h2>
-                <Tooltip text="The privacy score is a measure of how well a company is protecting user data." />
+                <Tooltip
+                    title="Privacy Score"
+                    text="The privacy score is a measure of how well a company is protecting user data." />
             </div>
 
             <div className="text-center">

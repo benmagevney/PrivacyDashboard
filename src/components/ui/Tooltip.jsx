@@ -1,7 +1,7 @@
 import { useState } from "react";
-import toolTip from "./tooltip.svg";
+import toolTip from "../../images/tooltip.svg"
 
-const Tooltip = ({ text }) => {
+const Tooltip = ({ title, text }) => {
     const [visible, setVisible] = useState(false);
 
     return (
@@ -14,9 +14,11 @@ const Tooltip = ({ text }) => {
                 onMouseLeave={() => setVisible(false)}
             />
             {visible && (
-                <div className="absolute bottom-full mb-2 p-2 w-48 bg-darkGray text-white text-sm rounded shadow-lg">
+                <div className="absolute bottom-full mb-2 p-2 w-64 bg-darkGray text-white text-sm rounded shadow-lg z-50">
+                    <div className="font-bold">{title}</div>
                     {text}
                 </div>
+
             )}
         </div>
     );
