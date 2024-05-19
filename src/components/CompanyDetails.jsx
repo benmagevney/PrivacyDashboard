@@ -1,4 +1,4 @@
-import CompanyDetailItem from "./CompanyDetailItem";
+import DataRow from "./DataRow";
 
 const CompanyDetails = () => {
 
@@ -11,10 +11,10 @@ const CompanyDetails = () => {
                     text="The privacy score is a measure of how well a company is protecting user data." /> */}
             </div>
             <div className="ml-5 mr-2">
-                <CompanyDetailItem title="Total Breaches" metric="2" />
-                <CompanyDetailItem title="Avgerage Days to Respond" metric="20 days" />
-                <CompanyDetailItem title="Washingtonians Affected" metric="100,000" />
-                <CompanyDetailItem title="Unique Information Breached" metric="9 items" />
+                <DataRow title="Total Breaches" metric="2" />
+                <DataRow title="Avgerage Days to Respond" metric="20 days" />
+                <DataRow title="Washingtonians Affected" metric="100,000" />
+                <DataRow title="Unique Information Breached" metric="9 items" />
             </div>
 
         </div>
