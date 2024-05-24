@@ -10,7 +10,7 @@ function App() {
   const [scoreData, setScoreData] = useState(null);
 
   // selected company
-  const [selectedCompany, setSelectedCompany] = useState(null);
+  const [selectedCompany, setSelectedCompany] = useState('');
   const [companyData, setCompanyData] = useState(null);
   const [companyAnalysis, setCompanyAnalysis] = useState(null);
   const [companyScore, setCompanyScore] = useState(null);

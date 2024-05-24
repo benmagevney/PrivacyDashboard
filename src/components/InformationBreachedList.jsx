@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { getInformationItems } from '../utils/dataUtils';
+import { INFORMATION_COMPROMISED } from '../utils/constants';
+import Severity from './ui/Severity';
 
 const InformationBreachedList = ({ information }) => {
     const [selectedItem, setSelectedItem] = useState(0);
 
     const items = information ? getInformationItems(information) : [];
+    const selectedItemTitle = items[selectedItem];
+    const selectedItemData = Object.values(INFORMATION_COMPROMISED).filter(item => item.title === selectedItemTitle)[0];
 
     const handleSelect = (index) => {
         setSelectedItem(index);
@@ -16,7 +20,7 @@ const InformationBreachedList = ({ information }) => {
                 <h2 className="text-lg">
                     Information Compromised: {items.length} Items
                 </h2>
-                <ul className="mt-2 max-h-40 overflow-y-auto rounded-lg w-80">
+                <ul className="mt-2 max-h-40 overflow-y-auto rounded-lg w-72">
                     {items.map((item, index) => (
                         <li
                             key={index}
@@ -31,19 +35,22 @@ const InformationBreachedList = ({ information }) => {
             </div>
             <div className="mt-3 ml-10 w-96 mr-10">
                 <h3 className="font-bold text-right align-right font-size text-xl">
-                    {items[selectedItem]}
+                    {selectedItemTitle}
                 </h3>
                 <div className="flex justify-between mt-2">
                     Severity:
-                    <div className="text-red font-bold">High</div>
+                    <Severity severity={selectedItemData.severity} />
+
                 </div>
                 <div className="mt-2">
                     Actions to Take:
                     <ul className="list-disc list-inside ml-5">
+                        {selectedItemData.actions.map((action, index) => (
+                            <li key={index} className="mb-2 ">
+                                {action}
+                            </li>
+                        ))}
 
-                        <li key={0} className="mb-2 ">
-                            {"Test"}
-                        </li>
 
                     </ul>
                 </div>

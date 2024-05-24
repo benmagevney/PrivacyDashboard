@@ -18,7 +18,7 @@ const Dashboard = ({ companyData, companyAnalysis, companyScore }) => {
     const privacyScore = isDataLoaded ? Math.floor(companyScore) : 0;
 
     const allBreachDates = isDataLoaded ? companyData.map(obj => obj['Date of Breach']) : [];
-    const lastBreachDate = allBreachDates.length > 0 ? Math.max(...allBreachDates) : 'N/A';
+    const lastBreachDate = allBreachDates.length > 0 ? Math.max(...allBreachDates) : '';
 
     return (
         <div className="bg-backgroundBlue min-h-screen w-full bg-cover bg-center bg-no-repeat">
@@ -27,13 +27,17 @@ const Dashboard = ({ companyData, companyAnalysis, companyScore }) => {
                     <h1 className="font-bold text-5xl">
                         {companyName}
                     </h1>
-                    <div className="text-xl text-right">
-                        Last Breach Date: {convertExcelDateToDateString(lastBreachDate)}
-                    </div>
+                    {
+                        lastBreachDate !== '' &&
+                        <div className="text-xl text-right">
+                            Last Breach Date: {convertExcelDateToDateString(lastBreachDate)}
+                        </div>
+                    }
+
                 </div>
                 <div className="flex mt-10 justify-between">
                     <PrivacyScore score={privacyScore} />
-                    <ScoreBreakdown />
+                    <ScoreBreakdown isDataLoaded={isDataLoaded} companyAnalysis={companyAnalysis} />
                     <CompanyDetails isDataLoaded={isDataLoaded} companyAnalysis={companyAnalysis} companyData={companyData} />
                 </div>
                 <div className="mt-10">

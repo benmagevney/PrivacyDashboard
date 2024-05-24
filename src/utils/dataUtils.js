@@ -20,6 +20,6 @@ export const readExcel = async (path) => {
 export const getInformationItems = (inputString) => {
     const slicedArray = inputString.split(';');
     const trimmedArray = slicedArray.map(item => item.trim());
-    const validValues = Object.values(INFORMATION_COMPROMISED);
+    const validValues = Object.values(INFORMATION_COMPROMISED).map(item => item.title);
     return trimmedArray.filter(item => validValues.includes(item));
 }
