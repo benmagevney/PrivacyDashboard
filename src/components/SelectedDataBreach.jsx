@@ -2,18 +2,33 @@ import SelectDropdown from './ui/SelectDropdown';
 import DataRow from './DataRow';
 import InformationBreachedList from './InformationBreachedList';
 import { icons } from '../images/icons';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import VerticalLine from './ui/VerticalLine';
+import { convertExcelDateToDateString, getDifferenceInDays } from '../utils/dates';
 
-const SelectedDataBreach = () => {
+const SelectedDataBreach = ({ companyData }) => {
+    const [selectedBreach, setSelectedBreach] = useState(0);
+    const [selectedBreachData, setSelectedBreachData] = useState(null);
 
-    const [selectedBreach, setSelectedBreach] = useState('option1');
-    const options = [
-        { value: 'option1', label: 'Option 1' },
-        { value: 'option2', label: 'Option 2' },
-        { value: 'option3', label: 'Option 3' },
-    ];
+    const options = companyData ? companyData.map((company, index) => {
+        return {
+            value: index,
+            label: convertExcelDateToDateString(company['Date of Breach'])
+        };
+    }) : [];
 
+    useEffect(() => {
+        if (companyData) {
+            setSelectedBreachData(companyData[selectedBreach]);
+        }
+    }, [selectedBreach, companyData]);
+
+    const daysToRespond = selectedBreachData ? getDifferenceInDays(selectedBreachData["Date of Breach"], selectedBreachData["Date Reported"]) : null;
+    const washingtoniansAffected = selectedBreachData ? selectedBreachData["Number of Washingtonians Affected"].toLocaleString() : 0;
+
+    const WASHINGTON_POPULATION = 7786000;
+    const AMERICA_POPULATION = 333300000;
+    const estimatedAmericansAffected = selectedBreachData ? Math.floor(selectedBreachData["Number of Washingtonians Affected"] / WASHINGTON_POPULATION * AMERICA_POPULATION) : 0;
 
     return (
         <div className="p-5 bg-white rounded-2xl shadow h-72 w-full">
@@ -26,20 +41,20 @@ const SelectedDataBreach = () => {
                     <SelectDropdown options={options} selectedOption={selectedBreach} onChange={setSelectedBreach} />
                 </div>
             </header>
-            <div className="flex ">
-                <div className="w-96 ml-5 mr-10 h-full flex flex-col justify-between">
-                    <DataRow title="Date Reported" metric="02/22/24" icon={icons.calendar} />
-                    <DataRow title="Days to Respond" metric="500 Days" icon={icons.clock} />
-                    <DataRow title="Washingtonians Affected" metric="100,000" icon={icons.person} />
-                    <DataRow title="Estimated Americans Affected" metric="02/22/24" icon={icons.globe} />
-                </div>
-                <VerticalLine />
-                <div className="ml-10 mt-2">
-                    <InformationBreachedList />
-                </div>
+            {selectedBreachData &&
+                <div className="flex">
+                    <div className="w-96 ml-5 mr-10 h-full flex flex-col justify-between">
+                        <DataRow title="Date Reported" metric={convertExcelDateToDateString(selectedBreachData["Date Reported"])} icon={icons.calendar} />
+                        <DataRow title="Days to Respond" metric={`${daysToRespond} Days`} icon={icons.clock} />
+                        <DataRow title="Washingtonians Affected" metric={washingtoniansAffected} icon={icons.person} />
+                        <DataRow title="Estimated Americans Affected" metric={estimatedAmericansAffected.toLocaleString()} icon={icons.globe} />
+                    </div>
+                    <VerticalLine />
+                    <div className="ml-10 mt-2">
+                        <InformationBreachedList information={selectedBreachData['Information Compromised']} />
+                    </div>
 
-            </div>
-
+                </div>}
 
         </div>
     )

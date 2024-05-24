@@ -1,9 +1,10 @@
 import Tooltip from "./ui/Tooltip";
+import { SCORE_PERCENTILES } from "../utils/constants";
 
 const getColorBasedOnScore = (score) => {
-    if (score >= 75) {
+    if (score >= SCORE_PERCENTILES.FIRST) {
         return 'bg-green'; // High score: Green
-    } else if (score >= 50) {
+    } else if (score >= SCORE_PERCENTILES.SECOND) {
         return 'bg-yellow'; // Medium score: Yellow
     } else {
         return 'bg-red'; // Low score: Red

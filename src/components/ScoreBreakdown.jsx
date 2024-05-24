@@ -5,7 +5,6 @@ import { useState } from "react";
 
 const ScoreBreakdown = () => {
     const [hoveredItem, setHoveredItem] = useState(null);
-    console.log(hoveredItem)
 
     const items = [
         { title: 'Leak Example 1', effect: BREAKDOWN_EFFECTS.NEUTRAL, info: INFORMATION_COMPROMISED.OTHER },

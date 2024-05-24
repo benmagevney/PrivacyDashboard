@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
+import { getInformationItems } from '../utils/dataUtils';
 
-const InformationBreachedList = () => {
+const InformationBreachedList = ({ information }) => {
     const [selectedItem, setSelectedItem] = useState(0);
 
-    const items = [
-        'Item 1',
-        'Item 2',
-        'Item 3',
-        'Item 4',
-        'Item 5',
-    ];
+    const items = information ? getInformationItems(information) : [];
 
     const handleSelect = (index) => {
         setSelectedItem(index);
@@ -34,7 +29,7 @@ const InformationBreachedList = () => {
                     ))}
                 </ul>
             </div>
-            <div className="mt-3 ml-10 w-80 mr-10">
+            <div className="mt-3 ml-10 w-96 mr-10">
                 <h3 className="font-bold text-right align-right font-size text-xl">
                     {items[selectedItem]}
                 </h3>

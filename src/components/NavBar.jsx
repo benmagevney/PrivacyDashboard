@@ -1,6 +1,6 @@
 import SearchBar from "./SearchBar";
 
-const NavBar = ({ searchQuery, setSearchQuery }) => {
+const NavBar = ({ searchQuery, setSearchQuery, companyNames }) => {
 
     return (
         <div className="bg-white mx-10">
@@ -8,7 +8,7 @@ const NavBar = ({ searchQuery, setSearchQuery }) => {
                 <h1 className="font-black text-3xl py-5">
                     Data Privacy Dashboard
                 </h1>
-                <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+                <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} companyNames={companyNames} />
             </div>
 
         </div>
