@@ -35,7 +35,7 @@ const Severity = ({ severity }) => {
     }
 
     return (
-        <div style={{ color: getSeverityColor(severity) }}>
+        <div style={{ color: getSeverityColor(severity), fontWeight: 'bold' }}>
             {getSeverityName(severity)}
         </div>
     )
