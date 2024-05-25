@@ -33,7 +33,7 @@ const InformationBreachedList = ({ information }) => {
                     ))}
                 </ul>
             </div>
-            <div className="mt-3 ml-10 w-96 mr-10">
+            <div className="mt-3 ml-10  mr-10">
                 <h3 className="font-bold text-right align-right font-size text-xl">
                     {selectedItemTitle}
                 </h3>

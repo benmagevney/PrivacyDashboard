@@ -31,7 +31,7 @@ const SelectedDataBreach = ({ companyData }) => {
     const estimatedAmericansAffected = selectedBreachData ? Math.floor(selectedBreachData["Number of Washingtonians Affected"] / WASHINGTON_POPULATION * AMERICA_POPULATION) : 0;
 
     return (
-        <div className="p-5 bg-white rounded-2xl shadow h-72 w-full">
+        <div className="p-5 bg-white rounded-2xl shadow min-h-72 w-full">
             <header className="flex justify-between items-center">
                 <h2 className="text-2xl font-bold text-darkGray">Selected Data Breach</h2>
                 <div className="flex items-center">
@@ -42,7 +42,7 @@ const SelectedDataBreach = ({ companyData }) => {
                 </div>
             </header>
             {selectedBreachData &&
-                <div className="flex">
+                <div className="flex justify-between">
                     <div className="w-96 ml-5 mr-10 h-full flex flex-col justify-between">
                         <DataRow title="Date Reported" metric={convertExcelDateToDateString(selectedBreachData["Date Reported"])} icon={icons.calendar} />
                         <DataRow title="Days to Respond" metric={`${daysToRespond} Days`} icon={icons.clock} />
