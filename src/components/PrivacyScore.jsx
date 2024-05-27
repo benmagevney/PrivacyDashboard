@@ -21,7 +21,7 @@ const PrivacyScore = ({ score }) => {
                 <h2 className="text-md font-bold text-darkGray">Privacy Score</h2>
                 <Tooltip
                     title="Privacy Score"
-                    text="The privacy score is a measure of how well a company is protecting user data." />
+                    text="The privacy score is a measure of how well a company is protecting user data. It is capped between 0-100." />
             </div>
 
             <div className="text-center">

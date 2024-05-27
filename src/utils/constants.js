@@ -118,3 +118,74 @@ export const SCORE_BREAKDOWN = {
     SOCIAL_SECURITY_NUMBER: 'Social Security Number',
     USERNAME_PASSWORD: 'Username/Password',
 };
+
+export const WEIGHTS = {
+    [SCORE_BREAKDOWN.SOCIAL_SECURITY_NUMBER]: 0.20253,
+    [SCORE_BREAKDOWN.USERNAME_PASSWORD]: 0.17784,
+    [SCORE_BREAKDOWN.FINANCIAL_BANKING]: 0.160917,
+    [SCORE_BREAKDOWN.BIOMETRIC_DATA]: 0.079114,
+    [SCORE_BREAKDOWN.HEALTH_INSURANCE]: 0.077547,
+    [SCORE_BREAKDOWN.DRIVERS_LICENSE]: 0.073765,
+    [SCORE_BREAKDOWN.PASSPORT_NUMBER]: 0.073031,
+    [SCORE_BREAKDOWN.MEDICAL_INFORMATION]: 0.071585,
+    [SCORE_BREAKDOWN.FULL_DATE_OF_BIRTH]: 0.06896,
+    [SCORE_BREAKDOWN.OTHER]: 0.076776,
+    // [SCORE_BREAKDOWN.DAYS_SINCE_BREACH] : 0.2,
+    // [SCORE_BREAKDOWN.DAYS_TO_REPORT] : 0.2,
+}
+
+export const TOOLTIPS = {
+    [SCORE_BREAKDOWN.SOCIAL_SECURITY_NUMBER]: {
+        penalty: BREAKDOWN_EFFECTS.BAD,
+        text: "Social Security Numbers are a key piece of information used to commit identity theft. "
+    },
+    [SCORE_BREAKDOWN.USERNAME_PASSWORD]:
+    {
+        penalty: BREAKDOWN_EFFECTS.BAD,
+        text: "Usernames and passwords are a key piece of information used to commit identity theft. "
+    },
+    [SCORE_BREAKDOWN.FINANCIAL_BANKING]: {
+        penalty: BREAKDOWN_EFFECTS.BAD,
+        text: "Financial and banking information is a key piece of information used to commit identity theft."
+    },
+    [SCORE_BREAKDOWN.BIOMETRIC_DATA]: {
+        penalty: BREAKDOWN_EFFECTS.NEUTRAL,
+        text: "Biometric data is used to identify individuals based on their unique physical characteristics."
+    },
+    [SCORE_BREAKDOWN.HEALTH_INSURANCE]: {
+        penalty: BREAKDOWN_EFFECTS.NEUTRAL,
+        text: "Health insurance data are used to identify individuals and access their health insurance benefits."
+    },
+    [SCORE_BREAKDOWN.DRIVERS_LICENSE]: {
+        penalty: BREAKDOWN_EFFECTS.NEUTRAL,
+        text: "Driver's licenses are used to identify individuals and access their driving records."
+    },
+    [SCORE_BREAKDOWN.PASSPORT_NUMBER]: {
+        penalty: BREAKDOWN_EFFECTS.NEUTRAL,
+        text: "Passport numbers are used to identify individuals and access their travel records."
+    },
+    [SCORE_BREAKDOWN.MEDICAL_INFORMATION]: {
+        penalty: BREAKDOWN_EFFECTS.NEUTRAL,
+        text: "Medical information is used to identify individuals and access their health records."
+    },
+    [SCORE_BREAKDOWN.FULL_DATE_OF_BIRTH]: {
+        penalty: BREAKDOWN_EFFECTS.GOOD,
+        text: "Full date of birth is used to identify individuals and verify their age."
+    },
+    [SCORE_BREAKDOWN.OTHER]: {
+        penalty: BREAKDOWN_EFFECTS.NEUTRAL,
+        text: "Other information that was compromised in the data breach."
+    },
+    [SCORE_BREAKDOWN.DAYS_SINCE_BREACH]: {
+        penalty: null,
+        text: "The score increases approximately 17.68% per year, since the latest breach."
+    },
+    [SCORE_BREAKDOWN.DAYS_TO_REPORT]: {
+        penalty: null,
+        text: "The score decays approximately 20% per year as a company waits to report their data breach."
+    },
+    [SCORE_BREAKDOWN.NUMBER_OF_WASHINGTONIANS_AFFECTED]: {
+        penalty: null,
+        text: "The number of Washingtonians affected by the data breach."
+    }
+}
