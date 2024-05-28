@@ -1,11 +1,16 @@
 import React from 'react';
 
-const SelectDropdown = ({ options, selectedOption, onChange }) => {
+const SelectDropdown = ({ options, selectedOption, setSelectedBreach }) => {
+
+    const handleChange = (e) => {
+        setSelectedBreach(e.target.value);
+    }
+
     return (
         <div className="relative inline-block w-64">
             <select
                 value={selectedOption}
-                onChange={onChange}
+                onChange={handleChange}
                 className="block appearance-none w-full bg-backgroundBlue text-black py-2 px-4 pr-8 rounded-2xl leading-tight focus:outline-none"
             >
                 {options.map((option, index) => (

@@ -13,9 +13,11 @@ const SelectedDataBreach = ({ companyData }) => {
     const options = companyData ? companyData.map((company, index) => {
         return {
             value: index,
-            label: convertExcelDateToDateString(company['Date of Breach'])
+            label: convertExcelDateToDateString(company['Date Reported'])
         };
     }) : [];
+
+    console.log(companyData);
 
     useEffect(() => {
         if (companyData) {
@@ -36,9 +38,9 @@ const SelectedDataBreach = ({ companyData }) => {
                 <h2 className="text-2xl font-bold text-darkGray">Selected Data Breach</h2>
                 <div className="flex items-center">
                     <div className="mr-5 text-darkGray font-bold">
-                        Select Incident
+                        Select Incident Report Date:
                     </div>
-                    <SelectDropdown options={options} selectedOption={selectedBreach} onChange={setSelectedBreach} />
+                    <SelectDropdown options={options} selectedOption={selectedBreach} setSelectedBreach={setSelectedBreach} />
                 </div>
             </header>
             {selectedBreachData &&

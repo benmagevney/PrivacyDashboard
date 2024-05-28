@@ -1,6 +1,13 @@
 import * as XLSX from 'xlsx';
 import { INFORMATION_COMPROMISED } from './constants';
 
+
+function removeDuplicateName(name) {
+    const regex = /^(.+?)\1$/;
+    const match = name.match(regex);
+    return match ? match[1] : name;
+}
+
 export const readExcel = async (path) => {
     const response = await fetch(path);
     const arrayBuffer = await response.arrayBuffer();
@@ -13,6 +20,12 @@ export const readExcel = async (path) => {
 
     // Convert the sheet to JSON
     const jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+    jsonData.forEach(row => {
+        if (row["Organization Name"]) {
+            row["Organization Name"] = removeDuplicateName(row["Organization Name"]);
+        }
+    })
 
     return jsonData; // Return the JSON data
 };
