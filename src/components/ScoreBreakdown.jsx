@@ -22,6 +22,13 @@ const ScoreBreakdown = ({ isDataLoaded, companyAnalysis }) => {
         Object.entries(SCORE_BREAKDOWN).filter(([, value]) => companyAnalysis[0][value] !== 0).map(([key, value]) => value)
         : [];
 
+    const getEffect = (companyAnalysis, item) => {
+        if (item === SCORE_BREAKDOWN.DAYS_SINCE_BREACH) {
+            return calculateEffect(1 - companyAnalysis[0][`${item} Rank`])
+        }
+
+        return calculateEffect(companyAnalysis[0][`${item} Rank`])
+    }
 
     return (
         <div className="p-5 bg-white rounded-2xl shadow h-64 w-4/12 flex flex-col justify-between">
@@ -40,7 +47,7 @@ const ScoreBreakdown = ({ isDataLoaded, companyAnalysis }) => {
                         <ScoreBreakdownItem
                             key={index}
                             title={item}
-                            effect={calculateEffect(companyAnalysis[0][`${item} Rank`])}
+                            effect={getEffect(companyAnalysis, item)}
                             onTooltipEnter={() => setHoveredItem(item)}
                             onTooltipExit={() => setHoveredItem(null)}
                         />

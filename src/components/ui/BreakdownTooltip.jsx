@@ -9,13 +9,13 @@ const iconColors = {
 }
 
 const BreakdownTooltip = ({ hoveredItem, setHoveredItem, companyAnalysis }) => {
-    console.log(companyAnalysis);
-    const weight = hoveredItem === SCORE_BREAKDOWN.DAYS_SINCE_BREACH || hoveredItem === SCORE_BREAKDOWN.DAYS_TO_REPORT ?
-        Math.pow(1.0005, -companyAnalysis[SCORE_BREAKDOWN.DAYS_SINCE_BREACH] + companyAnalysis[SCORE_BREAKDOWN.DAYS_TO_REPORT]) :
-        hoveredItem === SCORE_BREAKDOWN.NUMBER_OF_WASHINGTONIANS_AFFECTED ?
-            1.5 * companyAnalysis[`${SCORE_BREAKDOWN.NUMBER_OF_WASHINGTONIANS_AFFECTED} Rank`] :
-            WEIGHTS[hoveredItem];
-    const rank = companyAnalysis[`${hoveredItem} Rank`];
+    // console.log(companyAnalysis);
+    // const weight = hoveredItem === SCORE_BREAKDOWN.DAYS_SINCE_BREACH || hoveredItem === SCORE_BREAKDOWN.DAYS_TO_REPORT ?
+    //     Math.pow(1.0005, -companyAnalysis[SCORE_BREAKDOWN.DAYS_SINCE_BREACH] + companyAnalysis[SCORE_BREAKDOWN.DAYS_TO_REPORT]) :
+    //     hoveredItem === SCORE_BREAKDOWN.NUMBER_OF_WASHINGTONIANS_AFFECTED ?
+    //         1.5 * companyAnalysis[`${SCORE_BREAKDOWN.NUMBER_OF_WASHINGTONIANS_AFFECTED} Rank`] :
+    //         WEIGHTS[hoveredItem];
+    const rank = hoveredItem === SCORE_BREAKDOWN.DAYS_SINCE_BREACH ? 1 - companyAnalysis[`${hoveredItem} Rank`] : companyAnalysis[`${hoveredItem} Rank`];
     // 1.0005(-days_since_breachi + days_to_reporti)
 
     const getPenalty = () => {
